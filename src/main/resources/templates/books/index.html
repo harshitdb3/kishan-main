@@ -24,5 +24,26 @@
             </div>
         </div>
     </main>
+    <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
+        <ul class="flex justify-center">
+          <li class="mx-1">
+            <a
+              th:if="${currentPage > 1}"
+              th:href="@{'?page=' + ${currentPage - 1}}"
+              class="px-4 py-2 bg-blue-500 text-white rounded-md"
+              >Previous</a
+            >
+          </li>
+          <!-- Next Page Link -->
+          <li class="mx-1">
+            <a
+              th:if="${currentPage < totalPages}"
+              th:href="@{'?page=' + ${currentPage + 1}}"
+              class="px-4 py-2 bg-green-500 text-white rounded-md"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </div>
 </body>
 </html>

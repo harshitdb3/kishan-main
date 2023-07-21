@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import com.nextory.techtest.models.Book;
 import com.nextory.techtest.repositories.BookRepository;
 
@@ -17,6 +16,9 @@ public class BookService {
     
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    BookService bookService;
 
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<Book>();
@@ -37,4 +39,39 @@ public class BookService {
     public Book getBookById(Integer bookId) {
         return (bookRepository.findById(bookId).get());
     }
+
+    public List<Book> getTopSuggetions(Book book)
+    {
+        List<Book> top5Books = new ArrayList<Book>();
+
+        List<Book> books = bookService.getAllBooks();
+
+        for (Book b : books) {
+            if (book.getAuthor().equals(b.getAuthor()) && !book.equals(b)) 
+            {
+                if(top5Books.size() < 5)
+                top5Books.add(book);
+                else break;
+            }
+        }
+        if(books.size() < 5) 
+        {      
+            books.sort((Book b1, Book b2) -> b2.getBoostScore().compareTo(b1.getBoostScore()));
+
+            for (Book b : books) {
+                if (!top5Books.contains(b) && !book.equals(b)) 
+                {
+                    if(top5Books.size() < 5)
+                    top5Books.add(book);
+                    else break;
+                }
+            }
+            
+        }
+
+        return top5Books;
+
+
+    }
+
 }
