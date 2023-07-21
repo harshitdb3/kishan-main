@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Nextale: Book Detail</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}">
+</head>
+<body>
+    <div th:insert="~{commons/header :: header}"></div>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto md:w-2/3 w-full flex">
+                <div class="mx-auto">
+                    <div th:insert="~{books/_book_component :: book_component}"></div>
+                </div>
+        
+                <div id="comments">
+                    <h2 class="font-bold text-2xl">Comments</h2>
+                    <div th:each="comment: ${book.comments}">
+                        <div th:insert="~{comments/_comment_component :: comment_component}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
