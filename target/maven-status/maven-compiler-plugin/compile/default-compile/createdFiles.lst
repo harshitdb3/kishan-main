@@ -9,6 +9,7 @@ com\nextory\techtest\controllers\AuthorController.class
 com\nextory\techtest\models\Author.class
 com\nextory\techtest\controllers\BookController.class
 com\nextory\techtest\views\IndexViewController.class
+com\nextory\techtest\controllers\CommentController.class
 com\nextory\techtest\repositories\AuthorRepository.class
 com\nextory\techtest\models\Comment.class
 com\nextory\techtest\views\BookViewController.class

@@ -17,11 +17,12 @@ import com.nextory.techtest.services.BookService;
 @Controller
 public class BookViewController {
 
-    @Autowired 
+    @Autowired
     BookService bookService;
 
     @GetMapping("/book")
-    public String getBookPage(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int pageSize,Model model) {
+    public String getBookPage(@RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "25") int pageSize, Model model) {
         System.out.println("page: " + page);
         Page<Book> bookPage = bookService.getPaginatedBooks(page, pageSize);
         List<Book> books = bookPage.getContent();
