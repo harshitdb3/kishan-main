@@ -5,5 +5,6 @@
         </a>
     </div>
     <p class="mt-4 text-sm text-gray-700" th:text="${book.title}" />
+    <p class="mt-1 text-lg font-medium text-gray-900"  th:text="${#strings.substring(book.author.firstName, 0, 1)} + '. ' + ${book.author.lastName}" />
     <p class="mt-1 text-lg font-medium text-gray-900" th:text="${book.boostScore}"></p>
 </div>

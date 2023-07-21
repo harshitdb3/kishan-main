@@ -1,7 +1,4 @@
 package com.nextory.techtest.views;
-
-import java.io.Console;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +32,10 @@ public class BookViewController {
     }
 
     @GetMapping("/book/{id}")
-    public String getBookDetailPage(@PathVariable("id") Integer _id, Model model) {
+    public String getBookDetailPage(@PathVariable("id") Integer _id, Model model,@RequestParam(defaultValue = "5") int suggesionSize) {
         Book book = bookService.getBookById(_id);
         model.addAttribute("book", book);
-        List<Book> books = bookService.getTopSuggetions(book);
+        List<Book> books = bookService.getTopSuggetions(book, suggesionSize);
         model.addAttribute("books", books);
         return ("books/detail");
     }

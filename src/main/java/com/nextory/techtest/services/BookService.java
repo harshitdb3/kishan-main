@@ -17,8 +17,6 @@ public class BookService {
     @Autowired
     BookRepository bookRepository;
 
-    @Autowired
-    BookService bookService;
 
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<Book>();
@@ -40,17 +38,17 @@ public class BookService {
         return (bookRepository.findById(bookId).get());
     }
 
-    public List<Book> getTopSuggetions(Book book)
+    public List<Book> getTopSuggetions(Book book , int suggesionSize)
     {
         List<Book> top5Books = new ArrayList<Book>();
 
-        List<Book> books = bookService.getAllBooks();
+        List<Book> books = getAllBooks();
 
         for (Book b : books) {
             if (book.getAuthor().equals(b.getAuthor()) && !book.equals(b)) 
             {
-                if(top5Books.size() < 5)
-                top5Books.add(book);
+                if(top5Books.size() < suggesionSize)
+                top5Books.add(b);
                 else break;
             }
         }
@@ -61,8 +59,8 @@ public class BookService {
             for (Book b : books) {
                 if (!top5Books.contains(b) && !book.equals(b)) 
                 {
-                    if(top5Books.size() < 5)
-                    top5Books.add(book);
+                    if(top5Books.size() < suggesionSize)
+                    top5Books.add(b);
                     else break;
                 }
             }
